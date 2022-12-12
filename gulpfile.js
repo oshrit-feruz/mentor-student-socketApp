@@ -21,7 +21,7 @@ gulp.task('bundle', () => {
 
 
 gulp.task('organize', () => {
-  return gulp.src(['./dist/tsc/server/*'])
+  return gulp.src(['./dist/tsc/server/**/*'])
     .pipe(gulp.dest('./dist/server'));
 });
 
@@ -72,7 +72,7 @@ gulp.task('heroku-copy-dist', () => {
 
 gulp.task('heroku-copy-server', () => {
   return gulp.src([
-    './dist/tsc/*',
+    './dist/tsc/**/*',
   ])
     .pipe(gulp.dest('./deploy/server'));
 });

@@ -7,13 +7,27 @@ body {
   height: 100%;
   overflow: hidden;
 }
-body {
-  /* fallback for old browsers */
-  background: #6a11cb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  background-color: #a2cdc263 !important;
+  color: rgb(0 0 0 / 87%);
+  width: 22vw;
 }
+.questionsContainer {
+  display: flex;
+  grid-auto-columns: auto auto;
+  width: 100vw;
+  justify-content: space-around;
+}
+.startButton {
+  text-decoration: none !important;
+  background: #ebe4e4;
+  color: black;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+}
+.ͼ1p .cm-scroller {
+  overflow-x: initial !important;}
+  .css-1nuu1kx-MuiPaper-root-MuiCard-root {
+    width: 686px;
+    height: 400px;
+  }
