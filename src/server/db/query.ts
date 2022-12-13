@@ -1,4 +1,4 @@
-import { questionBlock } from "../server";
+import { questionBlock } from "../types";
 import config from "./dbConfig";
 const mysql = require("mysql");
 const pool = mysql.createPool({

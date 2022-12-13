@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 function App() {
   const questionsList = useSelector((state) => state.questions.questionsList);
   const dispatch = useDispatch();
+  //  The app run this code one time and fetch the questions data from the server
   useEffect(() => {
     let mounted = true;
     function getQuestions() {

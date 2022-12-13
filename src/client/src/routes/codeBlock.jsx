@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect, useBlock } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { useDispatch, useSelector } from "react-redux";
-import { io } from "socket.io-client";
 import { useLocation, useParams } from "react-router-dom";
 import { vscodeDark } from "@uiw/codemirror-themes-all";
 import useBeforeUnmount from "../components/useBeforeUnmount";
@@ -14,6 +13,7 @@ import useSocket from "../components/useSocket";
 
 export default function CodeBlockPage() {
   const codeId = +useParams().codeId;
+  // The sockets methods
   const socket = useSocket(
     "http://localhost:4040",
     {
@@ -55,10 +55,13 @@ export default function CodeBlockPage() {
   const [isMentor, setIsMentor] = useState(true);
   const [title, setTitle] = useState("");
   const [codeData, setCodeData] = useState(question.code);
+  // The title of the code is rendering by the user state (as mentor or as student)
   useEffect(() => {
     isMentor ? setTitle("Your student code") : setTitle("good luck student :)");
   }, [isMentor]);
 
+
+  // Checking if the student write the solution as it should be.
   useEffect(() => {
     if (!isMentor) socket.emit("code-block", { code: codeData });
     if (codeData === question.solution && codeData !== undefined) {
