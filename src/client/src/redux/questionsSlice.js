@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+/**
+ * @type {}
+ */
 const initialState = {
     questionsList: [],
     chossenQuestion: {},
 }
-
+// all question state and the chossen question state
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: 'questionsSlice',
   initialState,
   reducers: {
    

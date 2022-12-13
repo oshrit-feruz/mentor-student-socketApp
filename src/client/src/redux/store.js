@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import questionsReducer from './counter'
+import questionsReducer from './questionsSlice'
 
 export const store = configureStore({
   reducer: {

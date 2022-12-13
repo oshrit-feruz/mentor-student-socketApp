@@ -1,14 +1,11 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import config from "../assets/config";
-import { setQuestionsList, setChossenQuestion } from "../redux/counter";
+import { setChossenQuestion } from "../redux/questionsSlice";
 import { Link } from "react-router-dom";
 export default function QuestionsContainer() {
   const [questionsUi, setQuestionsUi] = useState([]);
@@ -17,21 +14,6 @@ export default function QuestionsContainer() {
     (state) => state.questions.chossenQuestion
   );
   const dispatch = useDispatch();
-  useEffect(() => {
-    let mounted = true;
-    function getQuestions() {
-      if (questionsList.length !== 3) {
-        axios
-          .get(`${config.apiHost}/questions`)
-          .then((res) => {
-            dispatch(setQuestionsList(res.data));
-          })
-          .catch((err) => alert(`failed to get data please try again`));
-      }
-    }
-    getQuestions();
-    return () => (mounted = false);
-  }, []);
   function handleSelect(question) {
     dispatch(setChossenQuestion(question));
   }
@@ -41,13 +23,18 @@ export default function QuestionsContainer() {
         return (
           <Card>
             <CardContent>
-              <Typography color="text.secondary" gutterBottom>
+              <Typography
+                color="Highlight"
+                gutterBottom
+                fontWeight={"800"}
+                fontFamily={"Varela Round"}
+              >
                 {question.title}
               </Typography>
               <Typography>{question.description}</Typography>
             </CardContent>
             <CardActions>
-              <Link to="codeBlock">
+              <Link to={`codeBlock/${question.id}`}>
                 <Button
                   className="startButton"
                   variant="contained"
@@ -65,8 +52,11 @@ export default function QuestionsContainer() {
       })
     );
   }, [questionsList]);
-  useEffect(() => {
-    console.log(chossenQuestion);
-  });
-  return <div className="questionsContainer">{questionsUi}</div>;
+
+  return (
+    <>
+      <h1 className="title">Choose code block</h1>
+      <div className="questionsContainer">{questionsUi}</div>;
+    </>
+  );
 }

@@ -1,11 +1,11 @@
 import { questionBlock } from "../server";
-
+import config from "./dbConfig";
 const mysql = require("mysql");
-const pool  = mysql.createPool({
-  host: "us-cdbr-east-06.cleardb.net",
-  user: "b76f4d790591b3",
-  password: "4f62dde1",
-  database: "heroku_02b3f4e1c86199e",
+const pool = mysql.createPool({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database,
 });
 // queries middleware to the database.
 
@@ -15,7 +15,6 @@ export function questionsList() {
     pool.query(query, (err: Error, res: questionBlock[], fields: any) => {
       if (err) reject(err);
       resolve(res);
-
     });
   });
 }
